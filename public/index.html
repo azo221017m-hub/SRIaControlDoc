@@ -1,15 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRIa Control Documental</title>
-    <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SRIa – Control Documental C-TPAT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden; /* Quitar scroll vertical */
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d1b2a;
+      color: #fff;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* HEADER */
+    header.hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4') center/cover no-repeat;
+      flex: 0 0 35vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 200px;
+    }
+    header.hero::after {
+      content: "";
+      position: absolute;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.6);
+      z-index:1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 10px;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      animation: fadeIn 1.2s ease;
+      line-height: 1.1;
+    }
+    .hero-content p {
+      font-size: 1rem;
+      margin-top: 8px;
+      animation: fadeIn 1.6s ease;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      background: #17a2b8;
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      animation: fadeIn 2s ease;
+      font-size: 0.9rem;
+    }
+    .btn:hover {
+      background: #1b9aaa;
+      transform: scale(1.05);
+    }
+    /* Botón de registro */
+    .register-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #ff9800;
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+      text-decoration: none;
+      z-index: 3;
+      font-size: 0.9rem;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* SECCIÓN QUÉ ES SRIa con layout en fila */
+    .about {
+      flex: 1 0 auto;
+      display: flex;
+      gap: 20px;
+      padding: 20px 15px;
+      background: #0d1b2a;
+      overflow: hidden;
+    }
+
+    /* Carrusel dentro de la sección about, lado izquierdo */
+    .about-carousel {
+      flex: 0 0 40%;
+      position: relative;
+      background: #1b263b;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 220px;
+    }
+    .about-carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .about-carousel img.active {
+      opacity: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Texto e íconos lado derecho */
+    .about-text {
+      flex: 1;
+      color: #ccc;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    .about-text h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .about-text p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+    .about-icons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 15px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .icon-card {
+      background: #1b263b;
+      padding: 12px;
+      border-radius: 10px;
+      width: 180px;
+      text-align: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      font-size: 0.85rem;
+    }
+    .icon-card:hover {
+      transform: translateY(-5px);
+    }
+    .icon-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    /* FOOTER */
+    footer {
+      flex-shrink: 0;
+      padding: 12px 5px;
+      background: #0a192f;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
 </head>
 <body>
 
-
-<!-- Hero con botón de registro -->
+  <!-- Hero con botón de registro -->
   <header class="hero" id="hero">
     <a href="#registro" class="register-btn">🎯 Demo Gratis</a>
     <div class="hero-content">
@@ -19,56 +200,64 @@
     </div>
   </header>
 
-    <!-- Encabezado -->
-    <header class="main-header">
-        <img src="img/logo.png" alt="Logo SRIa" class="logo">
-        <h1>SRIa Control Documental</h1>
-        <nav class="top-menu">
-            <a href="registro.html" class="btn">Iniciar</a>
-            <a href="login.html" class="btn">Consultor</a>
-        </nav>
-    </header>
+  <!-- Qué es SRIa -->
+  <section class="about" id="about">
+    
+    <!-- Carrusel lado izquierdo -->
+    <div class="about-carousel" aria-label="Carrusel de imágenes">
+      <img src="https://images.unsplash.com/photo-1581091215367-8f14f1a7f2a3" alt="Imagen 1" class="active" />
+      <img src="https://images.unsplash.com/photo-1581091012184-5c43b844d0e5" alt="Imagen 2" />
+      <img src="https://images.unsplash.com/photo-1581092334710-fc34b31d7d6d" alt="Imagen 3" />
+      <img src="https://images.unsplash.com/photo-1533557124088-7197f1b16519" alt="Imagen 4" />
+      <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4" alt="Imagen 5" />
+    </div>
 
-    <!-- Sección principal -->
-    <section class="main-section">
-        <!-- Categorías -->
-        <div class="categories-panel">
-            <h2>Categorías C-TPAT</h2>
-            <div class="categories-grid">
-                <a href="seguridad-fisica.html" class="category-item">Seguridad Física</a>
-                <a href="seguridad-contenedores.html" class="category-item">Seguridad de Contenedores y Remolques</a>
-                <a href="controles-acceso.html" class="category-item">Controles de Acceso</a>
-                <a href="procedimientos-seguridad.html" class="category-item">Procedimientos de Seguridad</a>
-                <a href="seguridad-personal.html" class="category-item">Seguridad de Personal</a>
-                <a href="seguridad-proveedores.html" class="category-item">Seguridad de Proveedores y Socios Comerciales</a>
-                <a href="seguridad-tecnologia.html" class="category-item">Seguridad de Tecnología</a>
-                <a href="entrenamiento-concientizacion.html" class="category-item">Entrenamiento y Concientización</a>
-            </div>
+    <!-- Texto e íconos lado derecho -->
+    <div class="about-text">
+      <h2>¿Qué es SRIa?</h2>
+      <p>
+        SRIa es un sistema web diseñado para gestionar, proteger y organizar la documentación de tu empresa,
+        cumpliendo con los más altos estándares de seguridad exigidos por C-TPAT y aduanas internacionales.
+      </p>
+      <div class="about-icons">
+        <div class="icon-card">
+          <img src="https://images.unsplash.com/photo-1581091215367-8f14f1a7f2a3" alt="Documentos" />
+          <h3>Organización</h3>
         </div>
-
-        <!-- Descripción y video -->
-        <div class="right-panel">
-            <p>
-                SRIa permite la gestión y almacenamiento documental, administración de auditorías, simulacros, 
-                capacitaciones con evaluación y seguimiento documental de proveedores para garantizar 
-                el cumplimiento de los programas C-TPAT, OEA, Responsabilidad Social y sistemas de gestión.
-            </p>
-
-            <div class="video-container">
-<iframe 
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/GKZLEhevKcQ?autoplay=1&controls=1&mute=1&rel=0" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="autoplay; encrypted-media" 
-    allowfullscreen>
-</iframe>
-
-
-            </div>
+        <div class="icon-card">
+          <img src="https://images.unsplash.com/photo-1581091012184-5c43b844d0e5" alt="Seguridad" />
+          <h3>Seguridad</h3>
         </div>
-    </section>
+        <div class="icon-card">
+          <img src="https://images.unsplash.com/photo-1581092334710-fc34b31d7d6d" alt="Cumplimiento" />
+          <h3>Cumplimiento</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 SRI Consultores – Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Carrusel sencillo con fade para las imágenes de la sección about-carousel
+    const aboutCarouselImages = document.querySelectorAll('.about-carousel img');
+    let currentIndex = 0;
+    const totalImages = aboutCarouselImages.length;
+    const interval = 4000;
+
+    function showAboutImage(index) {
+      aboutCarouselImages.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalImages;
+      showAboutImage(currentIndex);
+    }, interval);
+  </script>
 
 </body>
 </html>
