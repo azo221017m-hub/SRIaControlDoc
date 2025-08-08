@@ -1,17 +1,15 @@
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
 const app = express();
 
-// Middleware para parsear JSON en requests
-app.use(express.json());
 
+// Middleware para servir archivos estáticos desde /public
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-// Ruta de prueba
+// Ruta raíz para devolver index.html explícitamente
 app.get('/', (req, res) => {
-  res.send('index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 
 module.exports = app;
