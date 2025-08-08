@@ -25,7 +25,7 @@
     /* HEADER */
     header.hero {
       position: relative;
-      background: url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4') center/cover no-repeat;
+      background: url('./img/fondoarriba.jpg'); center/cover no-repeat;
       flex: 0 0 26vh; /* reducido 20% de 35vh */
       display: flex;
       align-items: center;
@@ -61,6 +61,66 @@
       animation: fadeIn 1.6s ease;
       color: #b0bec5;
     }
+
+
+/* Icono WhatsApp debajo del botón Demo */
+    .whatsapp-wrapper {
+      position: absolute;
+      top: 70px; /* justo debajo del botón */
+      right: 40px;
+      z-index: 3;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-icon {
+      width: 36px;
+      height: 36px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 8px #25D366aa;
+      transition: background 0.3s ease;
+      position: relative;
+    }
+    .whatsapp-icon:hover {
+      background: #1ebe57;
+    }
+    /* Tooltip con número */
+    .whatsapp-tooltip {
+      position: absolute;
+      bottom: 130%; /* arriba del icono */
+      right: 50%;
+      transform: translateX(50%);
+      background: #333;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 0 6px rgba(0,0,0,0.4);
+      user-select: none;
+      z-index: 10;
+    }
+    .whatsapp-wrapper:hover .whatsapp-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Icono SVG WhatsApp */
+    .whatsapp-icon svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+
+
     /* Botón de registro */
     .register-btn {
       position: absolute;
@@ -94,8 +154,8 @@
       left: 20px;
       transform: translateY(-50%);
       z-index: 3;
-      max-height: 60px;
-      max-width: 180px;
+      max-height: 240px;
+      max-width: 360px;
       object-fit: contain;
     }
 
@@ -117,70 +177,116 @@
       background: #2a4669;
       border-radius: 12px;
       overflow: hidden;
-      min-height: 220px;
+      height: 380px; /* fijo para evitar cambio de tamaño */
     }
-    .about-carousel img {
+
+    /* Contenedor para imágenes y animación slide */
+    .carousel-inner {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      transition: transform 1s ease-in-out;
+    }
+    .carousel-inner img {
+      flex-shrink: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .about-carousel img.active {
-      opacity: 1;
-      position: relative;
-      z-index: 2;
+      border-radius: 12px;
     }
 
-    /* Texto e íconos lado derecho */
+    /* Texto e íconos lado derecho (fichas de planes) */
     .about-text {
       flex: 1;
       overflow-y: auto;
       padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
     .about-text h2 {
       font-size: 1.8rem;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       color: #f5f7fa;
     }
-    .about-text p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: 20px;
+
+    /* Contenedor para las fichas */
+    .plans-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    /* Cada ficha (plan) */
+    .plan-card {
+      background: #324a6e;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 240px;
+      height: 80px
+      padding: 20px;
+      color: #e1e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .plan-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Icono escudo/documento */
+    .plan-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 3px rgba(0,0,0,0.4));
+    }
+
+    /* Título del plan */
+    .plan-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #f39c12;
+    }
+
+    /* Descripción */
+    .plan-desc {
+      font-size: 0.9rem;
+      flex-grow: 1;
+      margin-bottom: 12px;
       color: #cfd8dc;
     }
-    .about-icons {
-      display: flex;
-      justify-content: flex-start;
-      gap: 15px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-bottom: 10px;
+
+    /* Precio */
+    .plan-price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #f5b041;
     }
-    .icon-card {
-      background: #324a6e;
-      padding: 12px;
-      border-radius: 10px;
-      width: 180px;
-      text-align: center;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-      font-size: 0.85rem;
-      color: #e1e8f0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    /* Botón de compra */
+    .buy-btn {
+      background: #f39c12;
+      padding: 10px 18px;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(243, 156, 18, 0.7);
+      transition: background 0.3s ease;
+      width: 70%;
+      font-size: 1rem;
     }
-    .icon-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.35);
-    }
-    .icon-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      height: 100px;
-      object-fit: cover;
+    .buy-btn:hover {
+      background: #d87f0a;
+      box-shadow: 0 0 12px rgba(216, 127, 10, 0.9);
     }
 
     /* FOOTER */
@@ -207,10 +313,24 @@
     <img src="https://sriacontroldoc.onrender.com/img/logosri.png" alt="Logo SRIa" class="hero-logo" />
     <!-- Botón de registro -->
     <a href="#registro" class="register-btn">🎯 Demo Gratis</a>
+
+<!-- Icono WhatsApp con tooltip -->
+    <div class="whatsapp-wrapper" aria-label="Contacto WhatsApp">
+      <div class="whatsapp-icon" role="button" tabindex="0" aria-describedby="whatsapp-tooltip">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20.52 3.48A11.92 11.92 0 0012 0C5.37 0 0 5.37 0 12a11.87 11.87 0 001.64 6L0 24l6-1.63A11.87 11.87 0 0012 24c6.63 0 12-5.37 12-12a11.92 11.92 0 00-3.48-8.52zM12 21.5a9.43 9.43 0 01-4.79-1.35l-.34-.2-3.57.95.95-3.57-.22-.35A9.37 9.37 0 012.5 12 9.5 9.5 0 1112 21.5zm5.06-7.88l-1.31-.6a.74.74 0 00-1.04.36l-.47 1.06a.37.37 0 01-.55.15 7.09 7.09 0 01-2.13-1.3 7.67 7.67 0 01-1.63-2.26.38.38 0 01.06-.45l.9-1.1a.37.37 0 00-.05-.55l-1.4-1.4a.38.38 0 00-.54 0l-1.05 1.06a3.16 3.16 0 000 4.43 11.1 11.1 0 006.68 3.56.74.74 0 00.75-.21l1.12-1.12a.74.74 0 00-.19-1.17z"/>
+        </svg>
+      </div>
+     <div class="whatsapp-tooltip" id="whatsapp-tooltip" role="tooltip">
+  Asesor: César V.<br>
+  +52 56 4182 5675
+</div>
+    </div>
+
+
     <div class="hero-content">
       <h1>SRIa – Control Documental C-TPAT</h1>
       <p>Innovación, seguridad y cumplimiento para tu empresa.</p>
-      <!-- Botón azul quitado -->
     </div>
   </header>
 
@@ -219,33 +339,51 @@
     
     <!-- Carrusel lado izquierdo -->
     <div class="about-carousel" aria-label="Carrusel de imágenes">
-      <img src="https://images.unsplash.com/photo-1581091215367-8f14f1a7f2a3" alt="Imagen 1" class="active" />
-      <img src="https://images.unsplash.com/photo-1581091012184-5c43b844d0e5" alt="Imagen 2" />
-      <img src="https://images.unsplash.com/photo-1581092334710-fc34b31d7d6d" alt="Imagen 3" />
-      <img src="https://images.unsplash.com/photo-1533557124088-7197f1b16519" alt="Imagen 4" />
-      <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4" alt="Imagen 5" />
+      <div class="carousel-inner" id="carousel-inner">
+        <img src="./img/ctpatlogo.png" alt="Imagen 1" />
+        <img src="./img/ctpat_oea.jpg" alt="Imagen 2" />
+        <img src="./img/contenedores.jpeg" alt="Imagen 3" />
+        <img src="./img/documentos.jpg" alt="Imagen 4" />
+        <img src="./img/ctpatdig.webp" alt="Imagen 5" />
+      </div>
     </div>
 
-    <!-- Texto e íconos lado derecho -->
+    <!-- Texto e íconos lado derecho (fichas de planes) -->
     <div class="about-text">
       <h2>¿Qué es SRIa?</h2>
       <p>
         SRIa es un sistema web diseñado para gestionar, proteger y organizar la documentación de tu empresa,
         cumpliendo con los más altos estándares de seguridad exigidos por C-TPAT y aduanas internacionales.
       </p>
-      <div class="about-icons">
-        <div class="icon-card">
-          <img src="https://images.unsplash.com/photo-1581091215367-8f14f1a7f2a3" alt="Documentos" />
-          <h3>Organización</h3>
+      <div class="plans-container">
+
+        <!-- Plan 1 -->
+        <div class="plan-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2917/2917991.png" alt="Escudo Básico" class="plan-icon" />
+          <div class="plan-title">Plan Básico</div>
+          <div class="plan-desc">Gestión documental esencial para pequeñas empresas.</div>
+          <div class="plan-price">DE$CúBRELO / mes</div>
+          <button class="buy-btn" onclick="alert('Compra Plan Básico')">Comprar</button>
         </div>
-        <div class="icon-card">
-          <img src="https://images.unsplash.com/photo-1581091012184-5c43b844d0e5" alt="Seguridad" />
-          <h3>Seguridad</h3>
+
+        <!-- Plan 2 -->
+        <div class="plan-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2917/2917974.png" alt="Escudo Intermedio" class="plan-icon" />
+          <div class="plan-title">Plan Profesional</div>
+          <div class="plan-desc">Seguridad y cumplimiento avanzado con soporte prioritario.</div>
+          <div class="plan-price">DE$CúBRELO  / mes</div>
+          <button class="buy-btn" onclick="alert('Compra Plan Profesional')">Comprar</button>
         </div>
-        <div class="icon-card">
-          <img src="https://images.unsplash.com/photo-1581092334710-fc34b31d7d6d" alt="Cumplimiento" />
-          <h3>Cumplimiento</h3>
+
+        <!-- Plan 3 -->
+        <div class="plan-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2917/2917996.png" alt="Escudo Premium" class="plan-icon" />
+          <div class="plan-title">Plan Premium</div>
+          <div class="plan-desc">Solución completa con auditorías y consultoría personalizada.</div>
+          <div class="plan-price">DE$CúBRELO  / mes</div>
+          <button class="buy-btn" onclick="alert('Compra Plan Premium')">Comprar</button>
         </div>
+
       </div>
     </div>
   </section>
@@ -255,22 +393,25 @@
   </footer>
 
   <script>
-    // Carrusel sencillo con fade para las imágenes de la sección about-carousel
-    const aboutCarouselImages = document.querySelectorAll('.about-carousel img');
+    // Animación carrusel tipo slide horizontal
+    const carouselInner = document.getElementById('carousel-inner');
+    const images = carouselInner.querySelectorAll('img');
+    const totalImages = images.length;
     let currentIndex = 0;
-    const totalImages = aboutCarouselImages.length;
-    const interval = 4000;
 
-    function showAboutImage(index) {
-      aboutCarouselImages.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
+    function slideTo(index) {
+      // Calcula el desplazamiento
+      const offset = -index * 100;
+      carouselInner.style.transform = `translateX(${offset}%)`;
     }
 
-    setInterval(() => {
+    function nextSlide() {
       currentIndex = (currentIndex + 1) % totalImages;
-      showAboutImage(currentIndex);
-    }, interval);
+      slideTo(currentIndex);
+    }
+
+    // Inicia el carrusel
+    setInterval(nextSlide, 4000);
   </script>
 
 </body>
