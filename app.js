@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Ruta de prueba
 app.get('/', (req, res) => {
-  res.send('¡Hola desde Express con SQLite!');
+  res.send('index.html');
 });
 
 
