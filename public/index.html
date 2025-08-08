@@ -11,7 +11,7 @@
     }
     html, body {
       height: 100%;
-      overflow: Show; /* Quitar scroll vertical */
+      overflow: auto; /* Quitar scroll vertical */
       font-family: 'Roboto', sans-serif;
       background-color: #142b44; /* tono azul más limpio */
       color: #fff;
@@ -303,6 +303,49 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+  }
+  .about-carousel {
+    flex: none;
+    width: 100%;
+    height: 220px; /* más bajo para móvil */
+    margin-bottom: 15px;
+  }
+  .about-text {
+    padding-right: 0;
+    overflow-y: visible;
+  }
+  .plan-card {
+    width: 100%; /* para que las fichas ocupen todo el ancho */
+    height: auto;
+    padding: 15px;
+  }
+  .plan-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  .plan-title {
+    font-size: 1rem;
+  }
+  .plan-desc {
+    font-size: 0.85rem;
+  }
+  .plan-price {
+    font-size: 1rem;
+  }
+  .buy-btn {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
