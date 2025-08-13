@@ -43,10 +43,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// Inicio del servidor
-
-
 app.listen(PORT, () => {
-  console.log(`Servidor en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
-

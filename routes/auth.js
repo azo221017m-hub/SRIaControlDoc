@@ -70,8 +70,15 @@ router.post('/login',
     // Aquí implementa tu lógica de autenticación real
     // Por ahora, simulamos éxito:
     req.session.user = { usuario, empresa };
-    res.redirect('/user/panel');
+    res.redirect('/panel');
   }
 );
+
+
+
+router.get('/panel', (req, res) => {
+  res.render('panel');  // o el contenido que quieras servir
+});
+
 
 module.exports = router;

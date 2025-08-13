@@ -5,7 +5,6 @@
   <title>SRIa Control Documental</title>
   <link rel="stylesheet" href="/css/style.css" />
   <style>
-
     /* Reset y estilos generales */
     body, html {
       margin: 0;
@@ -17,7 +16,7 @@
     }
 
     header {
-      background-color: #556b2f; /* verde olivo */
+      background-color: #1f3a93; /* azúl oscuro */
       color: white;
       display: flex;
       justify-content: space-between;
@@ -25,8 +24,11 @@
       padding: 10px 20px;
     }
 
-    logo {
-      height: 80px;
+    header .logo img {
+      height: 200px;
+    }
+  header .logo2 img {
+      height: 200px;
     }
 
     header h1 {
@@ -49,7 +51,7 @@
     /* Botones comunes */
     .buttons a {
       padding: 8px 14px;
-      background-color: #6b8e23; /* verde olivo claro */
+      background-color: #318cad; /* verde olivo claro */
       color: white;
       text-decoration: none;
       border-radius: 4px;
@@ -65,7 +67,7 @@
     }
 
     .buttons a:hover {
-      background-color: #3c511a; /* verde olivo más oscuro */
+      background-color: #20596e; /* verde olivo más oscuro */
     }
 
     /* Botón DEMO GRATIS con animación pulsante */
@@ -80,7 +82,7 @@
       }
       50% {
         box-shadow: 0 0 15px #d6f13f;
-        background-color: #95c327;
+        background-color: #20596e;
       }
     }
 
@@ -173,7 +175,7 @@
 
     .plan img {
       width: 100%;
-      height: 300px;
+      height: 380px;
       object-fit: cover;
       display: block;
       border-bottom: 1px solid #ccc;
@@ -191,12 +193,12 @@
       width: calc(100% - 20px);
       margin: 0 10px 15px 10px;
       padding: 10px 0;
-      background-color: #6b8e23; /* verde olivo claro */
+      background-color: #20596e; /* verde olivo claro */
       color: white;
       border: none;
       border-radius: 5px;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 2rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -260,7 +262,7 @@
     }
 
     footer {
-      background-color: #556b2f; /* verde olivo */
+      background-color: #20596e; /* verde olivo */
       color: white;
       text-align: center;
       padding: 10px 0;
@@ -274,7 +276,10 @@
       <img src="/img/logosri.png" alt="Logo SRI Consultores" />
     </div>
 
-    <h1>SRIa Control Documental</h1>
+      <div class="logo2">
+      <img src="/img/logosria.png" alt="Logo SRIa CD" />
+    </div>
+
 
     <div class="buttons" role="navigation" aria-label="Opciones de acceso y contacto">
       <!-- Botón Demo Gratis primero -->
@@ -300,17 +305,17 @@
     <!-- Sección planes (ocupa izquierda y centro) -->
     <section class="plans-section" aria-label="Planes de pago disponibles">
       <div class="plan">
-        <img src="/img/1.jpg" alt="Plan Básico" />
+        <img src="/img/plan1.jpg" alt="Plan Básico" />
         <p>Plan Básico</p>
         <button class="btn-adquirir">Adquirir</button>
       </div>
       <div class="plan">
-        <img src="/img/2.jpg" alt="Plan Profesional" />
+        <img src="/img/plan2.jpg" alt="Plan Profesional" />
         <p>Plan Profesional</p>
         <button class="btn-adquirir">Adquirir</button>
       </div>
       <div class="plan">
-        <img src="/img/3.jpg" alt="Plan Empresarial" />
+        <img src="/img/plan3.jpg" alt="Plan Empresarial" />
         <p>Plan Empresarial</p>
         <button class="btn-adquirir">Adquirir</button>
       </div>
@@ -329,7 +334,18 @@
       </div>
       <div class="description-container" aria-label="Descripción del carrusel">
         <p>
-          Descubre nuestros planes y cómo pueden ayudarte a mantener tu documentación organizada y segura. Nuestro sistema es fácil de usar y altamente confiable.
+         •
+Almacenar los documentos que pertenecen al sistema de gestión
+•
+Gestión de Revisiones de documentos.
+•
+Elaborar reportes del avance o actualización de los documentos.
+•
+Programar actividades a realizar.
+•
+Validación de la información por el consultor.
+•
+Verificar el cumplimiento de socios comerciales.
         </p>
         <p>
           El carrusel muestra imágenes destacadas de nuestros servicios y beneficios, para que puedas elegir el plan que mejor se adapte a tus necesidades.

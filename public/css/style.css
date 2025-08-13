@@ -1,3 +1,27 @@
+header, footer {
+  background-color: #1f3a93; /* azul oscuro */
+  color: white;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 10px
+  ),
+  repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  background-repeat: repeat;
+  background-size: 20px 20px;
+}
+
+
+
+
 .plan button.btn-adquirir {
   width: calc(100% - 20px);
   margin: 0 10px 15px 10px;
@@ -34,14 +58,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background-color: #004080;
-  color: white;
-}
+
+
 .logo img {
   height: 50px;
 }
@@ -52,14 +70,35 @@ h1 {
   font-size: 1.8rem;
 }
 .buttons a {
-  margin-left: 10px;
-  padding: 10px 20px;
-  text-decoration: none;
+  background-color: #3a66b3; /* azul medio */
   color: white;
-  background-color: #007acc;
-  border-radius: 5px;
+  border-radius: 4px;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
+
 .buttons a:hover {
-  background-color: #005f99;
+  background-color: #274d7e; /* azul más oscuro */
+}
+
+.btn-demo {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px #7ea6f8;
+    background-color: #5580e8;
+  }
+  50% {
+    box-shadow: 0 0 15px #a3c0ff;
+    background-color: #7a9fec;
+  }
 }
