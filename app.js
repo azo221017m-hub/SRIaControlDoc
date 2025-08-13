@@ -44,4 +44,9 @@ app.get('/', (req, res) => {
 });
 
 // Inicio del servidor
-app.listen(PORT, () => console.log(`Servidor iniciado en http://localhost:${PORT}`));
+
+
+app.listen(PORT, () => {
+  console.log(`Servidor en http://localhost:${PORT}`);
+});
+
