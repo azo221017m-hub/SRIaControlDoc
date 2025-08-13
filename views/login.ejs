@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entrar - SRIa Control Documental</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+    h1 {
+      margin-bottom: 25px;
+      text-align: center;
+      color: #004080;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input.invalid {
+      border-color: red !important;
+    }
+    input.valid {
+      border-color: green !important;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007acc;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005f99;
+    }
+    .messages {
+      margin-bottom: 15px;
+      color: red;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Entrar</h1>
+
+    <% if (errors && errors.length > 0) { %>
+      <div class="messages">
+        <ul>
+          <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form action="/login" method="POST" novalidate>
+      <label for="usuario">Correo:</label>
+      <input type="email" id="usuario" name="usuario" value="<%= old ? old.usuario : '' %>" required />
+
+      <label for="empresa">Empresa:</label>
+      <input type="text" id="empresa" name="empresa" value="<%= old ? old.empresa : '' %>" required />
+
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('input[required]');
+
+      inputs.forEach(input => {
+        function validate() {
+          if (input.value.trim() === '') {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+          } else {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+          }
+        }
+        input.addEventListener('input', validate);
+        input.addEventListener('blur', validate);
+        // Validar al cargar la página para valores ya llenados
+        validate();
+      });
+    });
+  </script>
+</body>
+</html>

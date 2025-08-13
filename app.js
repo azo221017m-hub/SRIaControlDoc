@@ -1,21 +1,47 @@
 const express = require('express');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
+const session = require('express-session');
+const flash = require('connect-flash');
+const authRoutes = require('./routes/auth');
+
+
 
 const app = express();
+const PORT = 3000;
 
-// Middleware para parsear JSON
+// Middleware para parsear formularios y JSON
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Servir archivos estáticos desde /public
+// Configuración sesiones y flash
+app.use(session({
+  secret: 'tu_secreto_aqui',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+
+app.use('/', authRoutes);
+
+// Middleware para pasar mensajes flash a las vistas
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
+
+// Motor de vistas y carpeta de vistas
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Archivos estáticos (CSS, JS, imágenes, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Ruta para servir index.html
+// Página principal
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.render('index');
 });
 
-
-
-module.exports = app;
+// Inicio del servidor
+app.listen(PORT, () => console.log(`Servidor iniciado en http://localhost:${PORT}`));
