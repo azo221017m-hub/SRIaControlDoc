@@ -499,12 +499,10 @@ footer {
   text-align: center;
   position: relative;
 }
-
 .sponsors-carousel {
   position: relative;
   overflow: hidden;
-  margin-bottom: 1rem;
-  height: 80px; /* Ajusta según tamaño de logos */
+  height: 80px;
 }
 
 .carousel-track {
@@ -516,25 +514,21 @@ footer {
 }
 
 .sponsor img {
-  max-height: 60px; /* Ajusta según necesidad */
-  filter: grayscale(100%) opacity(0.6); /* Logos grises y semitransparentes */
+  max-height: 60px;
+  filter: grayscale(100%) opacity(0.6);
   transition: filter 0.3s;
 }
 
 .sponsor img:hover {
-  filter: grayscale(0%) opacity(1); /* Efecto al pasar el mouse */
-}
-
-@keyframes scroll {
-  0% { transform: translateX(100%); }   /* Empieza fuera, a la derecha */
-  100% { transform: translateX(-100%); } /* Termina fuera, a la izquierda */
+  filter: grayscale(0%) opacity(1);
 }
 
 
 /* Animación horizontal infinita */
+
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* Ajusta según la cantidad de logos */
+  0% { transform: translateX(100%); }   /* Arranca desde fuera a la derecha */
+  100% { transform: translateX(-50%); } /* Termina mostrando mitad de la pista */
 }
 
 .overlay {
@@ -543,9 +537,11 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,0.1); /* Panel transparente sobre los logos */
-  pointer-events: none; /* No bloquea la interacción */
+  background: rgba(255,255,255,0.1);
+  pointer-events: none;
 }
+
+
 
 
 /* ===== Animaciones simples ===== */
