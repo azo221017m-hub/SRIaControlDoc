@@ -191,6 +191,10 @@ header h1 {
 
 
 /* ===== Hero ===== */
+
+
+
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -252,10 +256,10 @@ section {
 /* Contenedor de toda la sección de planes */
 
 
-/* Bloque izquierdo con los planes existentes en 3 columnas */
+/* Bloque izquierdo con los planes existentes en 4 columnas */
 .planes-left {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
   gap: 1rem; /* espacio entre columnas */
   flex: 2;
 }
