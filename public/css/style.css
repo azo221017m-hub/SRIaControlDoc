@@ -525,6 +525,12 @@ footer {
   filter: grayscale(0%) opacity(1); /* Efecto al pasar el mouse */
 }
 
+@keyframes scroll {
+  0% { transform: translateX(100%); }   /* Empieza fuera, a la derecha */
+  100% { transform: translateX(-100%); } /* Termina fuera, a la izquierda */
+}
+
+
 /* Animación horizontal infinita */
 @keyframes scroll {
   0% { transform: translateX(0); }
