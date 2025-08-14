@@ -1,3 +1,18 @@
+<section id="contacto">
+  <div class="contact-form fade-in">
+    <h3>Contáctanos</h3>
+    <form onsubmit="return enviarFormulario(event)">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="resultado" style="text-align:center; color:green; font-weight:600;"></p>
+  </div>
+</section>
+
+
+
 <script>
 function enviarFormulario(event) {
     event.preventDefault();
