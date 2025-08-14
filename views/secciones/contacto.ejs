@@ -15,6 +15,8 @@
 document.getElementById('formContacto').addEventListener('submit', function(event) {
     event.preventDefault();
 
+
+
     const nombre = this.nombre.value.trim();
     const email = this.email.value.trim();
     const mensaje = this.mensaje.value.trim();
@@ -26,7 +28,8 @@ document.getElementById('formContacto').addEventListener('submit', function(even
 
     const numeroWhatsApp = '5215527618631'; // tu número de WhatsApp
     const texto = `Hola, mi nombre es ${nombre}. ${mensaje} (Correo: ${email})`;
-    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+    const urlWhatsApp = `https://web.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
+
 
     // Abrir WhatsApp en una nueva ventana
     window.open(urlWhatsApp, '_blank');
