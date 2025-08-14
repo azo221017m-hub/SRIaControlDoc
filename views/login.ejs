@@ -1,120 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Entrar - SRIa Control Documental</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .login-container {
-      background-color: white;
-      padding: 30px 40px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      width: 320px;
-    }
-    h1 {
-      margin-bottom: 25px;
-      text-align: center;
-      color: #004080;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #333;
-    }
-    input[type="email"],
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 18px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    input.invalid {
-      border-color: red !important;
-    }
-    input.valid {
-      border-color: green !important;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #007acc;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #005f99;
-    }
-    .messages {
-      margin-bottom: 15px;
-      color: red;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRIa Control Documental - SRI Consultores</title>
+<style>
+  /* ===== Reset y base ===== */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333; line-height:1.6; background:#f2f2f2;}
+
+  :root{
+    --gris-oscuro:#2c2c2c;
+    --gris-medio:#555;
+    --gris-claro:#ccc;
+    --gris-fondo:#f2f2f2;
+    --blanco:#fff;
+    --gris-borde:#e0e0e0;
+    --azul-acento:#004080;
+  }
+
+  /* ===== Header ===== */
+  header{background:var(--gris-oscuro); color:var(--blanco); padding:1rem;}
+  header div{display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto;}
+  header img{height:50px; vertical-align:middle; margin-right:1rem;}
+  header h1{display:inline-block; font-size:1.8rem; vertical-align:middle;}
+
+  header button{background:var(--azul-acento); color:var(--blanco); border:none; padding:0.5rem 1rem; border-radius:5px; cursor:pointer; font-weight:600; transition:background 0.3s;}
+  header button:hover{background:#0066cc;}
+
+  /* ===== Hero ===== */
+  .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:3rem 1rem;}
+  .hero h2{font-size:2rem; margin-bottom:1rem; color:var(--gris-oscuro);}
+  .hero p{font-size:1.1rem; max-width:700px; color:var(--gris-medio); margin-bottom:1.5rem;}
+
+  /* ===== Secciones ===== */
+  section{padding:4rem 1rem;}
+  .section-title{text-align:center;font-size:1.8rem;margin-bottom:2rem;color:var(--gris-oscuro);}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;}
+
+  .card{background:var(--blanco); padding:2rem; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s;}
+  .card:hover{transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+  .card h3{margin-bottom:1rem; color:var(--gris-oscuro);}
+  .card p{font-size:0.95rem; color:var(--gris-medio);}
+
+  /* ===== Planes ===== */
+  .plan{border:1px solid var(--gris-borde); border-radius:10px; padding:2rem; text-align:center; transition: transform 0.3s, box-shadow 0.3s; background:var(--blanco);}
+  .plan:hover{transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+  .plan h3{margin-bottom:1rem; color:var(--gris-oscuro);}
+  .plan p{margin-bottom:1rem; color:var(--gris-medio);}
+  .plan .precio{font-size:1.5rem; font-weight:700; margin-bottom:1rem; color:var(--azul-acento);}
+  .plan button{background:var(--azul-acento); color:var(--blanco); border:none; padding:0.75rem 1.5rem; border-radius:5px; cursor:pointer; font-weight:600; transition:background 0.3s;}
+  .plan button:hover{background:#0066cc;}
+
+  /* Toggle planes */
+  .toggle-btns{text-align:center;margin-bottom:2rem;}
+  .toggle-btns button{margin:0 0.5rem; padding:0.5rem 1rem; border:1px solid var(--gris-borde); border-radius:5px; background:var(--blanco); cursor:pointer; transition:background 0.3s;}
+  .toggle-btns button.active, .toggle-btns button:hover{background:var(--azul-acento); color:var(--blanco);}
+
+  /* ===== Contacto ===== */
+  .contact-form{max-width:500px;margin:0 auto;background:var(--blanco); padding:2rem; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+  .contact-form h3{text-align:center; margin-bottom:1rem; color:var(--gris-oscuro);}
+  .contact-form input, .contact-form textarea, .contact-form button{width:100%; padding:0.75rem; margin-bottom:1rem; border-radius:5px; border:1px solid var(--gris-borde);}
+  .contact-form button{background:var(--azul-acento); color:var(--blanco); font-weight:600; cursor:pointer; transition:background 0.3s;}
+  .contact-form button:hover{background:#0066cc;}
+
+  /* ===== Footer ===== */
+  footer{background:var(--gris-oscuro); color:var(--blanco); text-align:center; padding:2rem 1rem;}
+
+  /* ===== Animaciones simples ===== */
+  .fade-in{opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards;}
+  .fade-delay{animation-delay:0.3s;}
+  .fade-delay2{animation-delay:0.6s;}
+  @keyframes fadeInUp{to{opacity:1; transform:translateY(0);}}
+
+  @media(max-width:768px){.hero h2{font-size:1.5rem;}.section-title{font-size:1.5rem;}}
+</style>
 </head>
 <body>
-  <div class="login-container">
-    <h1>Entrar</h1>
 
-    <% if (errors && errors.length > 0) { %>
-      <div class="messages">
-        <ul>
-          <% errors.forEach(error => { %>
-            <li><%= error.msg %></li>
-          <% }) %>
-        </ul>
-      </div>
-    <% } %>
-
-    <form action="/login" method="POST" novalidate>
-      <label for="usuario">Correo:</label>
-      <input type="email" id="usuario" name="usuario" value="<%= old ? old.usuario : '' %>" required />
-
-      <label for="empresa">Empresa:</label>
-      <input type="text" id="empresa" name="empresa" value="<%= old ? old.empresa : '' %>" required />
-
-      <button type="submit">Acceso</button>
-    </form>
+<header>
+  <div>
+    <div style="display:flex; align-items:center;">
+      <img src="logo.png" alt="Logo SRI Consultores">
+      <h1>SRIa Control Documental</h1>
+    </div>
+    <button onclick="window.location.href='login.html'">Acceso Agentes</button>
   </div>
+</header>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const inputs = document.querySelectorAll('input[required]');
+<section class="hero">
+  <h2>Gestión documental segura y eficiente</h2>
+  <p>Optimiza tu control documental con SRI Consultores y nuestros planes C-TPAT.</p>
+</section>
 
-      inputs.forEach(input => {
-        function validate() {
-          if (input.value.trim() === '') {
-            input.classList.remove('valid');
-            input.classList.add('invalid');
-          } else {
-            input.classList.remove('invalid');
-            input.classList.add('valid');
-          }
-        }
-        input.addEventListener('input', validate);
-        input.addEventListener('blur', validate);
-        // Validar al cargar la página para valores ya llenados
-        validate();
-      });
+<section id="planes">
+  <h2 class="section-title">Nuestros Planes</h2>
+  <div class="toggle-btns">
+    <button class="active" onclick="togglePlanes('mes')">Mensual</button>
+    <button onclick="togglePlanes('anio')">Anual</button>
+  </div>
+  <div class="cards">
+    <div class="plan fade-in" data-plan-mes="$500 / mes" data-plan-anio="$5000 / año">
+      <h3>Plan Básico</h3>
+      <p>Ideal para pequeñas empresas.</p>
+      <p class="precio">$500 / mes</p>
+      <button>Contratar</button>
+    </div>
+    <div class="plan fade-in fade-delay" data-plan-mes="$800 / mes" data-plan-anio="$8000 / año">
+      <h3>Plan Profesional</h3>
+      <p>Para empresas medianas con necesidades completas.</p>
+      <p class="precio">$800 / mes</p>
+      <button>Contratar</button>
+    </div>
+    <div class="plan fade-in fade-delay2" data-plan-mes="$1200 / mes" data-plan-anio="$12000 / año">
+      <h3>Plan Premium</h3>
+      <p>Solución integral para grandes empresas.</p>
+      <p class="precio">$1200 / mes</p>
+      <button>Contratar</button>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios">
+  <h2 class="section-title">Beneficios de nuestro servicio</h2>
+  <div class="cards">
+    <div class="card fade-in">
+      <h3>Seguridad</h3>
+      <p>Protección de tu información conforme a estándares C-TPAT.</p>
+    </div>
+    <div class="card fade-in fade-delay">
+      <h3>Eficiencia</h3>
+      <p>Optimización de procesos documentales y reducción de errores.</p>
+    </div>
+    <div class="card fade-in fade-delay2">
+      <h3>Soporte Profesional</h3>
+      <p>Asesoría constante de expertos en gestión documental.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact-form fade-in">
+    <h3>Contáctanos</h3>
+    <form onsubmit="return enviarFormulario(event)">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="resultado" style="text-align:center; color:green; font-weight:600;"></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 SRI Consultores - SRIa Control Documental. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  function togglePlanes(tipo){
+    const buttons = document.querySelectorAll('.toggle-btns button');
+    buttons.forEach(btn=>btn.classList.remove('active'));
+    event.target.classList.add('active');
+    const planes = document.querySelectorAll('.plan');
+    planes.forEach(plan=>{
+      if(tipo==='mes'){
+        plan.querySelector('.precio').textContent = plan.dataset.planMes;
+      } else{
+        plan.querySelector('.precio').textContent = plan.dataset.planAnio;
+      }
     });
-  </script>
+  }
+
+  function enviarFormulario(e){
+    e.preventDefault();
+    const form = e.target;
+    const nombre = form.nombre.value;
+    const email = form.email.value;
+    const mensaje = form.mensaje.value;
+    console.log('Formulario enviado:', {nombre,email,mensaje});
+    document.getElementById('resultado').textContent = '¡Mensaje enviado correctamente!';
+    form.reset();
+    return false;
+  }
+</script>
+
 </body>
 </html>

@@ -1,77 +1,97 @@
-header, footer {
-  background-color: #1f3a93; /* azul oscuro */
-  color: white;
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.05) 0,
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 10px
-  ),
-  repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.05) 0,
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 10px
-  );
-  background-repeat: repeat;
-  background-size: 20px 20px;
-}
-
-
-
-
-.plan button.btn-adquirir {
-  width: calc(100% - 20px);
-  margin: 0 10px 15px 10px;
-  padding: 10px 0;
-  background-color: #007acc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.plan button.btn-adquirir:hover {
-  background-color: #005f99;
-}
-
-
-
-input.invalid {
-  border-color: red;
-}
-
-input.valid {
-  border-color: green;
-}
-
-
-
-
-body {
+/* ===== Reset y base ===== */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Textura sutil tipo panal (hexágonos) */
+body {
+  background: #f2f2f2;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'>\
+  <g stroke='rgba(0,0,0,0.07)' stroke-width='1' fill='none'>\
+    <path d='M10 26 L20 8 L40 8 L50 26 L40 44 L20 44 Z'/>\
+    <path d='M40 8 L50 26 L60 26 M20 8 L10 26 L0 26 M20 44 L10 26 L0 26 M40 44 L50 26 L60 26'/>\
+  </g>\
+</svg>");
+  background-size: 60px 52px;   /* tamaño de la celda */
+  background-attachment: fixed; /* se queda fijo al hacer scroll */
+}
+
+
+/* ===== Variables ===== */
+:root {
+  --gris-oscuro: #2c2c2c;
+  --gris-medio: #555;
+  --gris-claro: #ccc;
+  --gris-fondo: #f2f2f2;
+  --blanco: #fff;
+  --gris-borde: #e0e0e0;
+  --azul-acento: #004080;
+}
+
+/* ===== Header ===== */
+
+
+.main-header {
+  display: flex;
+  justify-content: space-between; /* logo izquierda, botones derecha */
+  align-items: center;
+  padding: 10px 20px;
+}
 
 .logo img {
-  height: 50px;
+  max-height: 60px;
 }
-h1 {
-  flex: 1;
-  text-align: center;
-  margin: 0;
-  font-size: 1.8rem;
+
+.buttons {
+  display: flex;
+  gap: 10px; /* espacio entre botones */
+  align-items: center;
 }
-.buttons a {
-  background-color: #3a66b3; /* azul medio */
+
+
+header {
+  background-color: #454547; /* gris oscuro */
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  /* Patrón sutil de triángulos */
+  background-image: 
+    url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMEw0MCAwTDIwIDIwaC0yMHoiIHN0cm9rZT0iI2ZmZiIgZmlsbD0ibm9uZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=");
+  background-repeat: repeat;
+  background-size: 40px 40px;
+}
+
+
+/* Título (si lo hubiera) */
+header h1 {
+  margin: 0 20px;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Contenedor principal de botones */
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Botones comunes */
+.buttons a {
+  padding: 8px 14px;
+  background-color: #318cad; /* verde olivo claro */
+  color: white;
+  text-decoration: none;
   border-radius: 4px;
   font-weight: bold;
   transition: background-color 0.3s ease;
@@ -85,20 +105,424 @@ h1 {
 }
 
 .buttons a:hover {
-  background-color: #274d7e; /* azul más oscuro */
+  background-color: #20596e; /* verde olivo más oscuro */
 }
 
+/* Botón DEMO GRATIS con animación pulsante */
 .btn-demo {
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 0 8px #7ea6f8;
-    background-color: #5580e8;
+    box-shadow: 0 0 8px #a0ca2e;
+    background-color: #7aac25;
   }
   50% {
-    box-shadow: 0 0 15px #a3c0ff;
-    background-color: #7a9fec;
+    box-shadow: 0 0 15px #d6f13f;
+    background-color: #20596e;
   }
 }
+
+/* Icono WhatsApp */
+.btn-whatsapp {
+  background-color: #25d366;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  box-shadow: 0 0 8px #25d366aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-whatsapp svg {
+  fill: white;
+  width: 20px;
+  height: 20px;
+}
+
+/* Tooltip WhatsApp */
+.btn-whatsapp .tooltip {
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  z-index: 10;
+  width: max-content;
+  max-width: 200px;
+  text-align: center;
+}
+
+.btn-whatsapp:hover .tooltip,
+.btn-whatsapp:focus .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Botones Registro y Login si deseas diferenciarlos */
+.btn-register {
+  background-color: #318cad;
+}
+
+.btn-register:hover {
+  background-color: #20596e;
+}
+
+.btn-login {
+  background-color: #318cad;
+}
+
+.btn-login:hover {
+  background-color: #20596e;
+}
+
+
+/* ===== Hero ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--gris-oscuro);
+}
+.hero p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  color: var(--gris-medio);
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Secciones ===== */
+section {
+  padding: 4rem 1rem;
+}
+.section-title {
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: var(--gris-oscuro);
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* ===== Tarjetas ===== */
+.card {
+  background: var(--blanco);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.card h3 {
+  margin-bottom: 1rem;
+  color: var(--azul-acento);
+}
+.card p {
+  font-size: 0.95rem;
+  color: var(--azul-acento);
+}
+
+/* ===== Planes ===== */
+/* Contenedor de toda la sección de planes */
+
+
+/* Bloque izquierdo con los planes existentes en 4 columnas */
+.planes-left {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+  gap: 1rem; /* espacio entre columnas */
+  flex: 2;
+}
+
+/* Cada plan con ancho automático dentro del grid */
+.plan {
+  border: 1px solid var(--gris-borde);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: var(--blanco);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+height: 30rem;
+}
+
+/* Overlay semi-transparente */
+.plan::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  z-index: 0;
+  
+}
+
+.plan h3,
+.plan p,
+.plan .precio,
+.plan button {
+  position: relative; /* encima del overlay */
+  z-index: 1;
+}
+
+.plan:hover {
+  transform: scale(1.05); /* agranda un poco */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* sombra */
+  cursor: pointer;
+}
+
+
+
+
+/* Responsivo: 1 columna en pantallas pequeñas */
+@media(max-width: 992px){
+  .planes-left {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width: 600px){
+  .planes-left {
+    grid-template-columns: 1fr;
+  }
+  .planes-container {
+    flex-direction: column;
+  }
+  .planes-right {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+}
+/* Precio de cada plan */
+.planes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Cada plan */
+.plan {
+  position: relative;
+  width: 280px;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Overlay oscuro para mejorar legibilidad */
+.plan::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.3);
+  z-index: 0;
+}
+
+/* Texto encima del overlay */
+.plan h3, .plan .precio, .plan button {
+  position: relative;
+  z-index: 1;
+  color: white;
+  margin: 0.3rem 0;
+}
+
+/* Nombre del plan */
+.plan h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Precio */
+.plan .precio {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+/* Botón contratar */
+.plan button.btn-contratar {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  background-color: #318cad;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.plan button.btn-contratar:hover {
+  background-color: #20596e;
+}
+
+/* Selector mensual/anual */
+.selector-precio {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.selector-precio button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #318cad;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.selector-precio button.active {
+  background-color: #f0a118;
+}
+
+.selector-precio button:hover {
+  background-color: #f0a118;
+}
+
+
+
+
+.pdf-text {
+  max-height: 300px;       /* altura máxima de la card */
+  overflow-y: auto;        /* scroll vertical si excede */
+  overflow-wrap: break-word; /* quiebra líneas largas */
+  white-space: pre-wrap;   /* respeta saltos de línea pero ajusta al ancho */
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #263194;
+  background-color: #fff;  /* si quieres card blanca */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+
+
+
+
+
+/* ===== Contacto ===== */
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #eb921e;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.contact-form h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--gris-oscuro);
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--gris-borde);
+}
+.contact-form button {
+  background: #ba751c;
+  color: var(--blanco);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.contact-form button:hover {
+  background: #0066cc;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: var(--gris-oscuro);
+  color: var(--blanco);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+/* ===== Animaciones simples ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+.fade-delay {
+  animation-delay: 0.3s;
+}
+.fade-delay2 {
+  animation-delay: 0.6s;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px) {
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+
+

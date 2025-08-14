@@ -1,48 +1,39 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const flash = require('connect-flash');
-const authRoutes = require('./routes/auth');
-
-
+const express = require("express");
+const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware para parsear formularios y JSON
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
-// Configuración sesiones y flash
-app.use(session({
-  secret: 'tu_secreto_aqui',
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(flash());
+const fs = require('fs');
+const pdf = require('pdf-parse');
 
-app.use('/', authRoutes);
-
-// Middleware para pasar mensajes flash a las vistas
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  next();
+app.get('/', (req, res) => {
+  try {
+    let dataBuffer = fs.readFileSync('public/pdf/archivo.pdf');
+    pdf(dataBuffer).then(data => {
+      res.render('index', { pdfText: data.text });
+    });
+  } catch (err) {
+    res.render('index', { pdfText: "No se pudo cargar el PDF." });
+  }
 });
 
-// Motor de vistas y carpeta de vistas
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
-// Archivos estáticos (CSS, JS, imágenes, etc.)
+// Configuración de EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+// Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Página principal
-app.get('/', (req, res) => {
-  res.render('index');
+// Ruta principal
+app.get("/", (req, res) => {
+    res.render("index");
 });
 
+// Arrancar servidor
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
