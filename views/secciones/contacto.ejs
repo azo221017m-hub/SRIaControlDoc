@@ -1,7 +1,7 @@
 <section id="contacto">
   <div class="contact-form fade-in">
     <h3>Contáctanos</h3>
-    <form onsubmit="return enviarFormulario(event)">
+    <form id="formContacto">
       <input type="text" name="nombre" placeholder="Nombre completo" required>
       <input type="email" name="email" placeholder="Correo electrónico" required>
       <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
@@ -11,32 +11,29 @@
   </div>
 </section>
 
-
-
 <script>
-function enviarFormulario(event) {
+document.getElementById('formContacto').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const form = event.target;
-    const nombre = form.nombre.value.trim();
-    const email = form.email.value.trim();
-    const mensaje = form.mensaje.value.trim();
+    const nombre = this.nombre.value.trim();
+    const email = this.email.value.trim();
+    const mensaje = this.mensaje.value.trim();
 
-    if(!nombre || !email || !mensaje) {
+    if (!nombre || !email || !mensaje) {
         alert('Por favor completa todos los campos.');
-        return false;
+        return;
     }
 
-    const numeroWhatsApp = '5215527618631'; // reemplaza con tu número
+    const numeroWhatsApp = '5215527618631'; // tu número de WhatsApp
     const texto = `Hola, mi nombre es ${nombre}. ${mensaje} (Correo: ${email})`;
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
 
+    // Abrir WhatsApp en una nueva ventana
     window.open(urlWhatsApp, '_blank');
 
     document.getElementById('resultado').textContent = '¡Mensaje enviado! Se abrirá WhatsApp.';
 
-    form.reset();
-    return false;
-}
+    this.reset();
+});
 </script>
 
